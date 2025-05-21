@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Simple Multi-Tier App By Kaushik Piparotar</title>
+    <script src="config.js"></script>
+</head>
+<body>
+    <h1>Simple Multi-Tier Application</h1>
+    <button id="loadData">Load Data</button>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('loadData').addEventListener('click', () => {
+            const apiUrl = window.APP_CONFIG.API_URL;
+            fetch(`${apiUrl}/api/data`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('result').innerText = data.message;
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                    document.getElementById('result').innerText = 'Error fetching data.';
+                });
+        });
+    </script>
+</body>
+</html>
